@@ -54,7 +54,7 @@ public class FirstFragment extends Fragment {
 
     private List<String>setData() {
         for (int i= 0;i<99;i++){
-            dataList.add("Word"+i);
+            dataList.add("Palabra "+i);
         }
         return dataList;
     }
