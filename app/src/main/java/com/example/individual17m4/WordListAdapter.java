@@ -18,8 +18,9 @@ import java.util.List;
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
     private List<String>mWordList;
 
-    public WordListAdapter(List<String>mWordList){
+    public WordListAdapter(Context context,List<String>mWordList,PassElementSelected listener){
         this.mWordList=mWordList;
+        this.listener=listener;
 
     }
 
@@ -61,7 +62,15 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             String element=mWordList.get(position);
             mWordList.set(position,"Seleccionado "+ element);
             notifyDataSetChanged();
+            listener.passElement(element);
 
         }
     }
+
+    public interface PassElementSelected{
+        void passElement(String element);
+
+    }
+    private  PassElementSelected listener;
+
 }

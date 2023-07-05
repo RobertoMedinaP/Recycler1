@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,7 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstFragment extends Fragment {
+public class FirstFragment extends Fragment implements WordListAdapter.PassElementSelected {
 
     private FragmentFirstBinding binding;
     private List<String>dataList=new ArrayList<>();
@@ -36,7 +37,7 @@ public class FirstFragment extends Fragment {
                 dataList.add("Palabra "+ dataList.size());
                 binding.recyclerView.getAdapter().notifyItemInserted(dataList.size());
                 binding.recyclerView.smoothScrollToPosition(dataList.size());
-                Snackbar.make(view, "Aún no hago nada", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Agregada una palabra", Snackbar.LENGTH_LONG)
                         .setAnchorView(R.id.fab)
                         .setAction("Action", null).show();
             }
@@ -48,7 +49,7 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        WordListAdapter adapter=new WordListAdapter(setData());
+        WordListAdapter adapter=new WordListAdapter(getContext(),dataList, this);
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setHasFixedSize(true);
@@ -82,6 +83,8 @@ public class FirstFragment extends Fragment {
     }
 
 
-
-
+    @Override
+    public void passElement(String element) {
+        Toast.makeText(getContext(),element,Toast.LENGTH_SHORT).show();
+    }
 }
