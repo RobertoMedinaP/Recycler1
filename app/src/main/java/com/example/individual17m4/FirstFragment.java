@@ -49,7 +49,7 @@ public class FirstFragment extends Fragment implements WordListAdapter.PassEleme
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        WordListAdapter adapter=new WordListAdapter(getContext(),dataList, this);
+        WordListAdapter adapter=new WordListAdapter(getContext(),setData(), this);
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setHasFixedSize(true);
@@ -86,5 +86,6 @@ public class FirstFragment extends Fragment implements WordListAdapter.PassEleme
     @Override
     public void passElement(String element) {
         Toast.makeText(getContext(),element,Toast.LENGTH_SHORT).show();
+        
     }
 }
