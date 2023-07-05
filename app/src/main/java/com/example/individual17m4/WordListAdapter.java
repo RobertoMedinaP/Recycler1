@@ -1,6 +1,8 @@
 package com.example.individual17m4;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.individual17m4.databinding.DataListItemBinding;
@@ -63,14 +68,17 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             mWordList.set(position,"Seleccionado "+ element);
             notifyDataSetChanged();
             listener.passElement(element);
+            //esto es otro intento
+            //NavHostFragment.findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment);
 
         }
     }
 
     public interface PassElementSelected{
         void passElement(String element);
-
+        //estoy pasando solo la posicion??
     }
     private  PassElementSelected listener;
+
 
 }

@@ -1,14 +1,18 @@
 package com.example.individual17m4;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -30,6 +34,7 @@ public class FirstFragment extends Fragment implements WordListAdapter.PassEleme
     ) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
+
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,9 +60,12 @@ public class FirstFragment extends Fragment implements WordListAdapter.PassEleme
         binding.recyclerView.setHasFixedSize(true);
 
 
+
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //esto tambien es nuevo
+                passElement(dataList.toString());
                 NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
@@ -86,6 +94,14 @@ public class FirstFragment extends Fragment implements WordListAdapter.PassEleme
     @Override
     public void passElement(String element) {
         Toast.makeText(getContext(),element,Toast.LENGTH_SHORT).show();
-        
+        //navegamos?
+
+        //hice un bundle
+        Bundle bundle=new Bundle();
+        bundle.putString("clave1",element);
+        NavController navController= Navigation.findNavController(getActivity(),R.id.recyclerView);
+        navController.navigate(R.id.action_FirstFragment_to_SecondFragment,
+                bundle);
+
     }
 }

@@ -13,7 +13,24 @@ import com.example.individual17m4.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
 
+    //implementando factory
+    private static final String ARG_PARAM1 = "clave1";
+    private String mParam1;
+
     private FragmentSecondBinding binding;
+
+    //constructor vacio
+    public SecondFragment(){}
+
+    //factory para recibir
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+        }
+    }
+
 
     @Override
     public View onCreateView(
@@ -22,10 +39,11 @@ public class SecondFragment extends Fragment {
     ) {
 
         binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding.textviewSecond.setText(mParam1);
         return binding.getRoot();
 
     }
-
+    //hasta aca puedo borrar
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
