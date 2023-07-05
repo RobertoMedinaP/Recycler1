@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.individual17m4.databinding.FragmentFirstBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,18 @@ public class FirstFragment extends Fragment {
     ) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
+
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dataList.add("Palabra "+ dataList.size());
+                binding.recyclerView.getAdapter().notifyItemInserted(dataList.size());
+                binding.recyclerView.smoothScrollToPosition(dataList.size());
+                Snackbar.make(view, "Aún no hago nada", Snackbar.LENGTH_LONG)
+                        .setAnchorView(R.id.fab)
+                        .setAction("Action", null).show();
+            }
+        });
         return binding.getRoot();
 
     }

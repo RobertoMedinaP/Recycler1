@@ -3,6 +3,7 @@ package com.example.individual17m4;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -43,12 +44,24 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     }
 
 
-    public class WordViewHolder extends RecyclerView.ViewHolder {
+    public class WordViewHolder extends RecyclerView.ViewHolder implements View
+
+            .OnClickListener {
         public TextView worditemTv;
 
-        public WordViewHolder(@NonNull DataListItemBinding binding) {
+        public WordViewHolder(DataListItemBinding binding) {
             super(binding.getRoot());
             worditemTv = binding.textview;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position= getLayoutPosition();
+            String element=mWordList.get(position);
+            mWordList.set(position,"Seleccionado "+ element);
+            notifyDataSetChanged();
+
         }
     }
 }
