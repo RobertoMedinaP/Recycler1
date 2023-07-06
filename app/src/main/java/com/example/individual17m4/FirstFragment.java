@@ -27,6 +27,19 @@ public class FirstFragment extends Fragment implements WordListAdapter.PassEleme
     private FragmentFirstBinding binding;
     private List<String>dataList=new ArrayList<>();
 
+    private static final String ARG_PARAM1 = "clave2";
+    private String mParam;
+
+    public FirstFragment(){}
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam = getArguments().getString(ARG_PARAM1);
+        }
+    }
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -61,13 +74,14 @@ public class FirstFragment extends Fragment implements WordListAdapter.PassEleme
 
 
 
+
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //esto tambien es nuevo
                 passElement(dataList.toString());
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                //NavHostFragment.findNavController(FirstFragment.this)
+                  //      .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
 
@@ -75,9 +89,13 @@ public class FirstFragment extends Fragment implements WordListAdapter.PassEleme
     }
 
     private List<String>setData() {
-        for (int i= 0;i<99;i++){
+        for (int i= 0;i<10;i++){
             dataList.add("Palabra "+i);
+            dataList.add(mParam);
+
+
         }
+
         return dataList;
     }
 

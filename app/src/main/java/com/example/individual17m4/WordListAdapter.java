@@ -23,9 +23,11 @@ import java.util.List;
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
     private List<String>mWordList;
 
+
     public WordListAdapter(Context context,List<String>mWordList,PassElementSelected listener){
         this.mWordList=mWordList;
         this.listener=listener;
+
 
     }
 
@@ -68,15 +70,14 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             mWordList.set(position,"Seleccionado "+ element);
             notifyDataSetChanged();
             listener.passElement(element);
-            //esto es otro intento
-            //NavHostFragment.findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment);
+
 
         }
     }
 
     public interface PassElementSelected{
         void passElement(String element);
-        //estoy pasando solo la posicion??
+
     }
     private  PassElementSelected listener;
 
