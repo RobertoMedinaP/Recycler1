@@ -16,8 +16,10 @@ import com.example.individual17m4.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
 
-    //implementando factory
+    //implementando factory, argumento enviado desde el FirstFragment
     private static final String ARG_PARAM1 = "clave1";
+
+    //el string recibido
     private String mParam1;
 
     private FragmentSecondBinding binding;
@@ -42,7 +44,7 @@ public class SecondFragment extends Fragment {
     ) {
 
         binding = FragmentSecondBinding.inflate(inflater, container, false);
-        // y volver a enviar con factory?
+        // el edittext recibe la palabra recibida
         binding.textviewSecond.setText(mParam1);
         return binding.getRoot();
 
@@ -54,8 +56,9 @@ public class SecondFragment extends Fragment {
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //se envia el elemento modificado en el edittext al FirstFragment segun interfaz
                 passElement(binding.textviewSecond.getText().toString());
+                //textviewsecond es el edittext, deberia cambiarle el nombre
 
             }
         });
@@ -69,6 +72,8 @@ public class SecondFragment extends Fragment {
 
 
     public void passElement(String element) {
+
+        //en esta interfaz se envia el elemento modificado al primer fragmento
 
         Bundle bundle=new Bundle();
         bundle.putString("clave2",element);
